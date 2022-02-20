@@ -121,7 +121,7 @@ float Matrix::operator()(int rows, int cols)
 {
 	if (rows >= this->rows || cols >= this->cols)
 		throw "Matrix subscript out of bounds";
-	return 0.0f;
+	return this->matrix[rows][cols];
 }
 
 ostream& operator<<(ostream& out, Matrix& mat)

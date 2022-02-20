@@ -3,7 +3,7 @@
 Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 	// Иницилизируем переменные.
 	Matrix xn;
-	Matrix xi(c);
+	Matrix xi;
 	Matrix epsM;
 	int k = 0;
 
@@ -19,7 +19,7 @@ Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 
 	// Считаем норму матрицы Q и выводим её.
 	double q = Q.getNorm();
-	xi = c;	
+	xn = c;	
 	cout << "> Matrix Q" << endl;
 	cout << Q;
 	cout << " Norm of Matrix Q = " << q;
@@ -29,9 +29,9 @@ Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 	// Формула x_i+1 = Q * x_i + c.
 	do {
 		cout << "> Itteration (" << k++ << "):" << endl;
-		xn = xi;
 		xi = Q * xn + c;
 		epsM = xn - xi;
+		xn = xi;
 		// Промежуточные результаты для анализа.
 		cout << " Xi " << endl;
 		cout << xi;
@@ -41,6 +41,6 @@ Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 		cout << q / (1 - q) * epsM.getNorm() << endl << endl;
 	} while (!(q / (1 - q) * epsM.getNorm() < eps));
 	
-	// Возвращаем указатель на вектор ответов.
+	// Возвращаем вектор ответов.
 	return xi;
 }
