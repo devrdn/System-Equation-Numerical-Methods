@@ -34,12 +34,13 @@ Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 		xn = xi;
 		// Промежуточные результаты для анализа.
 		cout << " Xi " << endl;
-		cout << xi;
+		cout << setprecision(8) << xi;
 		cout << " Abs " << endl;
-		cout << epsM;
+		cout << setprecision(8) << epsM;
 		cout << " Kr = ";
-		cout << q / (1 - q) * epsM.getNorm() << endl << endl;
+		cout << setprecision(8) << q / (1 - q) * epsM.getNorm() << endl << endl;
 	} while (!(q / (1 - q) * epsM.getNorm() < eps));
+	
 	
 	// Возвращаем вектор ответов.
 	return xi;

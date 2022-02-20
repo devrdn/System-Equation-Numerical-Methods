@@ -1,6 +1,4 @@
-﻿#include "..\include\Matrix.h"
-#include <iomanip>
-
+﻿#include "..\include\Header.h"
 
 Matrix::Matrix(int rows, int cols)
 {
