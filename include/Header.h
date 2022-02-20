@@ -2,4 +2,4 @@
 #include "Matrix.h"
 #include <iomanip>
 
-Matrix jacobiMethod(Matrix A, Matrix b, double eps);
+Matrix jacobiMethod(Matrix Q, Matrix c, double eps);

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "../include/Header.h"
 
 Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
@@ -21,9 +20,9 @@ Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 	// —читаем норму матрицы Q и выводим еЄ.
 	double q = Q.getNorm();
 	xi = c;	
-	cout << "> New Matrix A" << endl;
+	cout << "> Matrix Q" << endl;
 	cout << Q;
-	cout << " Norm of Matrix A = " << q;
+	cout << " Norm of Matrix Q = " << q;
 	cout << endl << endl;
 
 	// »теративным способом находим результат.
