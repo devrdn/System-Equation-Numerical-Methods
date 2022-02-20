@@ -35,6 +35,21 @@ Matrix::~Matrix()
 	delete[] matrix;
 }
 
+double Matrix::getNorm()
+{
+	double max = -1.0;
+	double sum = 0.0;
+	for (size_t i = 0; i < this->rows; i++) {
+		sum = 0.0;
+		for (size_t j = 0; j < this->cols; j++) {
+			sum += abs(this->matrix[i][j]);
+		}
+		if (sum > max)
+			max = sum;
+	}
+	return max;
+}
+
 void Matrix::operator=(const Matrix mat)
 {
 	if (this->rows != mat.rows || this->cols != mat.cols) {
@@ -72,6 +87,36 @@ Matrix Matrix::operator*(const Matrix& m1)
 	return temp;
 }
 
+Matrix Matrix::operator+(const Matrix& m1)
+{
+	// создаем результирующую матрицу.
+	Matrix temp(this->rows, this->cols);
+	if (this->rows != m1.rows && this->cols != m1.cols)
+		throw "Invalid rows!";
+	// заполняем матрицу результат.
+	for (size_t i = 0; i < this->rows; i++) {
+		for (size_t j = 0; j < m1.cols; j++) {
+			temp.matrix[i][j] = this->matrix[i][j] + m1.matrix[i][j];
+		}
+	}
+	return temp;
+}
+
+Matrix Matrix::operator-(const Matrix& m1)
+{
+	// создаем результирующую матрицу.
+	Matrix temp(this->rows, this->cols);
+	if (this->rows != m1.rows && this->cols != m1.cols)
+		throw "Invalid rows!";
+	// заполняем матрицу результат.
+	for (size_t i = 0; i < this->rows; i++) {
+		for (size_t j = 0; j < m1.cols; j++) {
+			temp.matrix[i][j] = this->matrix[i][j] - m1.matrix[i][j];
+		}
+	}
+	return temp;
+}
+
 float Matrix::operator()(int rows, int cols)
 {
 	if (rows >= this->rows || cols >= this->cols)
@@ -85,14 +130,14 @@ ostream& operator<<(ostream& out, Matrix& mat)
 	state.copyfmt(out);
 	for (size_t i = 0; i < mat.rows; i++) {
 		for (size_t j = 0; j < mat.cols; j++) {
-			out << setw(5)
+			out << setw(10)
 				<< fixed
-				<< setprecision(1)
+				<< setprecision(5)
 				<< mat.matrix[i][j];
 		}
 		out << endl;
 	}
-	cout.copyfmt(state);
+	out.copyfmt(state);
     return out;
 }
 
