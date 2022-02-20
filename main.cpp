@@ -3,9 +3,6 @@
 #include "include/Matrix.h"
 int main()
 {
-    Matrix a(2,2);
-    cin >> a;
-    cout << a;
+    setlocale(LC_ALL, "Ru");
     std::cout << "Hello World!\n";
-
 }
