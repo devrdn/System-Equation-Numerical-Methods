@@ -1,4 +1,4 @@
-#include "..\include\Matrix.h"
+п»ї#include "..\include\Matrix.h"
 #include <iomanip>
 
 
@@ -53,16 +53,16 @@ double Matrix::getNorm()
 void Matrix::operator=(const Matrix mat)
 {
 	if (this->rows != mat.rows || this->cols != mat.cols) {
-		// освобождение памяти в левом операнде
+		// РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РІ Р»РµРІРѕРј РѕРїРµСЂР°РЅРґРµ
 		this->~Matrix();
-		// выделение памяти в левом операнде
+		// РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РІ Р»РµРІРѕРј РѕРїРµСЂР°РЅРґРµ
 		this->rows = mat.rows;
 		this->cols = mat.cols;
 		this->matrix = new float* [mat.rows];
 		for (size_t i = 0; i < mat.rows; i++)
 			this->matrix[i] = new float[mat.cols];
 	}
-	// копирование данных правого операнда в левый
+	// РєРѕРїРёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РїСЂР°РІРѕРіРѕ РѕРїРµСЂР°РЅРґР° РІ Р»РµРІС‹Р№
 	for (size_t i = 0; i < mat.rows; i++)
 		for (size_t j = 0; j < mat.cols; j++)
 			this->matrix[i][j] = mat.matrix[i][j];
@@ -71,11 +71,11 @@ void Matrix::operator=(const Matrix mat)
 
 Matrix Matrix::operator*(const Matrix& m1)
 {
-	// создаем результирующую матрицу.
+	// СЃРѕР·РґР°РµРј СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
 	Matrix temp(this->rows, m1.cols);
 	if (this->rows != m1.rows)
 		throw "Invalid rows!";
-	// заполняем матрицу результат.
+	// Р·Р°РїРѕР»РЅСЏРµРј РјР°С‚СЂРёС†Сѓ СЂРµР·СѓР»СЊС‚Р°С‚.
 	for (size_t i = 0; i < this->rows; i++) {
 		for (size_t j = 0; j < m1.cols; j++) {
 			temp.matrix[i][j] = 0;
@@ -89,11 +89,11 @@ Matrix Matrix::operator*(const Matrix& m1)
 
 Matrix Matrix::operator+(const Matrix& m1)
 {
-	// создаем результирующую матрицу.
+	// СЃРѕР·РґР°РµРј СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
 	Matrix temp(this->rows, this->cols);
 	if (this->rows != m1.rows && this->cols != m1.cols)
 		throw "Invalid rows!";
-	// заполняем матрицу результат.
+	// Р·Р°РїРѕР»РЅСЏРµРј РјР°С‚СЂРёС†Сѓ СЂРµР·СѓР»СЊС‚Р°С‚.
 	for (size_t i = 0; i < this->rows; i++) {
 		for (size_t j = 0; j < m1.cols; j++) {
 			temp.matrix[i][j] = this->matrix[i][j] + m1.matrix[i][j];
@@ -104,11 +104,11 @@ Matrix Matrix::operator+(const Matrix& m1)
 
 Matrix Matrix::operator-(const Matrix& m1)
 {
-	// создаем результирующую матрицу.
+	// СЃРѕР·РґР°РµРј СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
 	Matrix temp(this->rows, this->cols);
 	if (this->rows != m1.rows && this->cols != m1.cols)
 		throw "Invalid rows!";
-	// заполняем матрицу результат.
+	// Р·Р°РїРѕР»РЅСЏРµРј РјР°С‚СЂРёС†Сѓ СЂРµР·СѓР»СЊС‚Р°С‚.
 	for (size_t i = 0; i < this->rows; i++) {
 		for (size_t j = 0; j < m1.cols; j++) {
 			temp.matrix[i][j] = this->matrix[i][j] - m1.matrix[i][j];
