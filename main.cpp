@@ -35,7 +35,8 @@ int main()
     cout << "> Result" << endl << res;
     w = A * res - b;
     cout << endl << "> Residual Vector" << endl;
-    cout  << w;
+    for (int i = 0; i < w.rows; i++)
+        cout << setw(15) << w.matrix[i][0] << endl;
     cout << endl;
 
     // Метод Гаусса-Зейделя.
@@ -44,5 +45,6 @@ int main()
     cout << "> Result" << endl << res;
     w = A * res - b;
     cout << endl << "> Residual Vector" << endl;
-    cout <<  w;
+    for (int i = 0; i < w.rows; i++)
+        cout << setw(15) << w.matrix[i][0] << endl;
 }

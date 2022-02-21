@@ -1,20 +1,20 @@
-#include "..\include\Header.h"
+п»ї#include "..\include\Header.h"
 
 /**
-* Решение линейного уравнения методом Гауса-«ейдел¤.
-* @param Q - матрица коэффициентов.
-* @param c - матрица свободных членов.
-* @param e - точность.
-* @return  вектор решений.
+* Р РµС€РµРЅРёРµ Р»РёРЅРµР№РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃР°-В«РµР№РґРµР»В¤.
+* @param Q - РјР°С‚СЂРёС†Р° РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ.
+* @param c - РјР°С‚СЂРёС†Р° СЃРІРѕР±РѕРґРЅС‹С… С‡Р»РµРЅРѕРІ.
+* @param e - С‚РѕС‡РЅРѕСЃС‚СЊ.
+* @return  РІРµРєС‚РѕСЂ СЂРµС€РµРЅРёР№.
 */
 Matrix GSMethod(Matrix Q, Matrix c, double eps) {
-	// Иницилизируем переменные.
+	// РРЅРёС†РёР»РёР·РёСЂСѓРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ.
 	Matrix xn;
 	Matrix xi(c.rows, 1);
 	Matrix epsM;
 	int k = 0;
 
-	// Генерируем матрицу Q и c. 
+	// Р“РµРЅРµСЂРёСЂСѓРµРј РјР°С‚СЂРёС†Сѓ Q Рё c. 
 	for (size_t i = 0; i < Q.rows; i++) {
 		for (size_t j = 0; j < Q.cols; j++) {
 			if (i != j)
@@ -24,7 +24,7 @@ Matrix GSMethod(Matrix Q, Matrix c, double eps) {
 		Q.matrix[i][i] = 0;
 	}
 
-	// Считаем норму матрицы Q и выводим её.
+	// РЎС‡РёС‚Р°РµРј РЅРѕСЂРјСѓ РјР°С‚СЂРёС†С‹ Q Рё РІС‹РІРѕРґРёРј РµС‘.
 	double q = Q.getNorm();
 	xn = c;
 	cout << "> Matrix Q" << endl;
@@ -32,7 +32,7 @@ Matrix GSMethod(Matrix Q, Matrix c, double eps) {
 	cout << " Norm of Matrix Q = " << q;
 	cout << endl << endl;
 
-	// Итеративным способом находим результат.
+	// РС‚РµСЂР°С‚РёРІРЅС‹Рј СЃРїРѕСЃРѕР±РѕРј РЅР°С…РѕРґРёРј СЂРµР·СѓР»СЊС‚Р°С‚.
 	do {
 		cout << "> Itteration (" << k++ << "):" << endl;
 		for (size_t i = 0; i < Q.rows; i++) {
@@ -48,7 +48,7 @@ Matrix GSMethod(Matrix Q, Matrix c, double eps) {
 		} 
 		epsM = xi - xn;
 		xn = xi;
-		// Промежуточные результаты для анализа.
+		// РџСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Рµ СЂРµР·СѓР»СЊС‚Р°С‚С‹ РґР»СЏ Р°РЅР°Р»РёР·Р°.
 		cout << " Xi " << endl;
 		cout << setprecision(8) << xi;
 		cout << " Abs " << endl;
@@ -57,7 +57,7 @@ Matrix GSMethod(Matrix Q, Matrix c, double eps) {
 		cout << setprecision(8) << q / (1 - q) * epsM.getNorm() << endl << endl;
 	} while (!(q / (1 - q) * epsM.getNorm() < eps));
 
-	// Возвращаем  вектор ответов.
+	// Р’РѕР·РІСЂР°С‰Р°РµРј  РІРµРєС‚РѕСЂ РѕС‚РІРµС‚РѕРІ.
 
 	return xi;
 }
