@@ -1,5 +1,12 @@
 #include "../include/Header.h"
 
+/**
+* –ешение линейного уравнени€ методом якоби.
+* @param Q - матрица коэффициентов.
+* @param c - матрица свободных членов.
+* @param e - точность.
+* @return  вектор решений.
+*/
 Matrix jacobiMethod(Matrix Q, Matrix c, double eps) {
 	// »ницилизируем переменные.
 	Matrix xn;

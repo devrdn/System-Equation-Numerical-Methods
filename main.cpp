@@ -1,5 +1,6 @@
 ﻿#include "include/Header.h"
 
+
 int main()
 {
     setlocale(LC_ALL, "Ru");
@@ -9,19 +10,32 @@ int main()
     Matrix w(4, 1);
     double eps = 0.000001;
 
-    // Ввод матриц.
-    cout << "> Enter coefficient matrix: " << endl;
-    cin >> A;
-    cout << endl << "> Enter the matrix of free terms: " << endl;
-    cin >> b;
+    // Ввод матрицы коэффициентов и матрицы свободных членов с файла
+    string path = "data/in.txt";
+    ifstream fin;
+    fin.open(path);
+    if (fin.is_open()) {
+        for (size_t i = 0; i < A.rows; i++)
+            for (size_t j = 0; j < A.cols; j++)
+                fin >> A.matrix[i][j];
+        for (size_t i = 0; i < b.rows; i++)
+            fin >> b.matrix[i][0];
+    }
+
+    // Вывод матриц.
+    cout << "> Matrix A" << endl;
+    cout << A << endl;
+    cout << "> Vector b" << endl;
+    cout << b;
+
 
     // Метод Якоби.
     cout << endl << setw(29) << "Jacobi Method: " << endl << endl;
     res = jacobiMethod(A, b, eps);
     cout << "> Result" << endl << res;
     w = A * res - b;
-    cout << "> Residual Vector" << endl;
-    cout << setprecision(8) << w;
+    cout << endl << "> Residual Vector" << endl;
+    cout  << w;
     cout << endl;
 
     // Метод Гаусса-Зейделя.
@@ -29,6 +43,6 @@ int main()
     res = GSMethod(A, b, eps);
     cout << "> Result" << endl << res;
     w = A * res - b;
-    cout << "> Residual Vector" << endl;
-    cout << setprecision(8) << w;
+    cout << endl << "> Residual Vector" << endl;
+    cout <<  w;
 }

@@ -1,6 +1,12 @@
 #include "..\include\Header.h"
 
-
+/**
+* Решение линейного уравнения методом Гауса-«ейдел¤.
+* @param Q - матрица коэффициентов.
+* @param c - матрица свободных членов.
+* @param e - точность.
+* @return  вектор решений.
+*/
 Matrix GSMethod(Matrix Q, Matrix c, double eps) {
 	// Иницилизируем переменные.
 	Matrix xn;
